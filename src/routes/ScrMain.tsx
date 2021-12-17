@@ -188,10 +188,10 @@ function ScrMain() {
                 marker.setMap(map);
 
                 // 주유소 마커 표시
-                let imageSrc = "img/scrImg.png";
                 for (let i = 0; i < scrData?.length; i++) {
                     let latlng = new kakao.maps.LatLng(scrData[i].lat, scrData[i].lng);
 
+                    let imageSrc = "img/scrImg.png";
                     let imageSize = new kakao.maps.Size(35, 35);
                     let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 

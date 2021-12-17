@@ -61,6 +61,7 @@ const GlobalStyle = createGlobalStyle`
     }
     body{
      background-color: ${(props) => props.theme.bgColor};
+      overflow-x: hidden;
     }
     a{
       text-decoration:none;
