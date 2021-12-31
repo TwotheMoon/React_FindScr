@@ -7,12 +7,14 @@ import { useSetRecoilState } from "recoil";
 import { isDarkAtom } from "../atoms";
 
 const Container = styled.div`
-    max-width: 480px;
-    padding: 0px 20px;
+    max-width: 100%;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     .infoText{
-        width: 480px;
-        font-size: 15px;
+        width: 375px;
+        font-size: 12px;
         font-weight: bold;
         text-align: center;
         color:${(props) => props.theme.scrTextColor};
@@ -21,11 +23,12 @@ const Container = styled.div`
 `;
 
 const MapContainer = styled.div`
-    max-width: 480px;
-    height: 600px;
+    max-width: 375px;
+    width: 100%;
+    height: 100%;
 `;
 const Header = styled.header`
-  width: 480px;
+  width: 375px;
   margin: 0 auto;
   height: 10vh;
     display: flex;
@@ -35,13 +38,13 @@ const Header = styled.header`
 `;
 
 const Title = styled.h1`
-    font-size: 30px;
+    margin: 0 auto;
+    max-width: 480px;
+    font-size: 25px;
     color: #7d70db;
     font-weight: bold;
-    max-width: 480px;
-  margin: 0 auto;
   img{
-      width: 35px;
+      width: 25px;
   }
 `;
 
@@ -50,8 +53,8 @@ const Switch = styled.span`
 .switch-button {
        position: relative; 
        display: inline-block; 
-       width: 55px; 
-       height: 30px; 
+       width: 50px; 
+       height: 25px; 
     }
     .switch-button input { 
         opacity: 0; 
@@ -74,8 +77,8 @@ const Switch = styled.span`
         .onoff-switch:before {
              position: absolute; 
              content: ""; 
-             height: 22px; 
-             width: 22px; 
+             height: 18px; 
+             width: 18px; 
              left: 4px; 
              bottom: 4px; 
              background-color: #fff; 
@@ -101,8 +104,8 @@ const Loader = styled.span`
 `;
 
 const ScrList = styled.ul`
-    width: 480px;
-    margin-top: 12px;
+    width: 375px;
+    margin: 12px auto;
 `;
 
 const Scr = styled.li`
@@ -154,6 +157,7 @@ interface IFindScr {
 function ScrMain() {
     const { isLoading, data } = useQuery<IScr>("allScr", fetchScr, { refetchInterval: 300000, });
     const scrData = data?.data;
+    console.log(data);
 
     const [findScr, setFindScr] = useState<IFindScr>();
 
@@ -191,7 +195,7 @@ function ScrMain() {
                 for (let i = 0; i < scrData?.length; i++) {
                     let latlng = new kakao.maps.LatLng(scrData[i].lat, scrData[i].lng);
 
-                    let imageSrc = "img/scrImg.png";
+                    let imageSrc = `${process.env.PUBLIC_URL}/img/scrImg.png`;
                     let imageSize = new kakao.maps.Size(35, 35);
                     let markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
@@ -251,7 +255,7 @@ function ScrMain() {
         <Container>
             <Header>
                 <Title>
-                    <img src="img/scrImg.png"></img>
+                    <img src={`${process.env.PUBLIC_URL}/img/scrImg.png`}></img>
                     요소수 재고 현황{isLoading ? "(Loading...)" : `(${scrData?.length})`}
                     <Switch>
                         <label className="switch-button">
@@ -263,8 +267,8 @@ function ScrMain() {
             </Header>
             <MapContainer>
                 <div id='myMap' style={{
-                    width: '480px',
-                    height: '600px'
+                    width: '375px',
+                    height: '450px'
                 }}>
                 </div>
             </MapContainer>
