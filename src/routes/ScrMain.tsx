@@ -263,6 +263,7 @@ function ScrMain() {
                             <span className="onoff-switch"></span>
                         </label>
                     </Switch>
+                    <span className="infoText" style={{ marginTop: '15px' }}> *마커가 안보이면 새로고침 해주세요!</span>
                 </Title>
             </Header>
             <MapContainer>
