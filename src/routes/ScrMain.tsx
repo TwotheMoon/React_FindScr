@@ -157,7 +157,6 @@ interface IFindScr {
 function ScrMain() {
     const { isLoading, data } = useQuery<IScr>("allScr", fetchScr, { refetchInterval: 300000, });
     const scrData = data?.data;
-    console.log(data);
 
     const [findScr, setFindScr] = useState<IFindScr>();
 
